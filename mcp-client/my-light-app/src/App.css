@@ -1,0 +1,5 @@
+/* App specific styles - minimal to avoid conflicts */
+.App {
+  width: 100%;
+  min-height: 100vh;
+}

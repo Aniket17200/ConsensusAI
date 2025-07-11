@@ -1,0 +1,39 @@
+{
+  "name": "consensus-ai",
+  "version": "1.0.0",
+  "description": "Multi-model AI discussion system with intelligent routing",
+  "main": "src/app-enhanced.js",
+  "scripts": {
+    "start": "node src/app-enhanced.js",
+    "dev": "nodemon src/app-enhanced.js",
+    "test": "node test-production.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.50.4",
+    "compression": "^1.8.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.0",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.1",
+    "helmet": "^7.2.0",
+    "hpp": "^0.2.3",
+    "node-fetch": "^2.7.0",
+    "xss-clean": "^0.1.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "keywords": [
+    "ai",
+    "consensus",
+    "discussion",
+    "multi-model",
+    "huggingface"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

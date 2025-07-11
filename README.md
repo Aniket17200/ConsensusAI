@@ -17,7 +17,33 @@ A full-stack application that combines multiple AI models to provide comprehensi
 
 ## Quick Start
 
-### Option 1: Using the start script
+### Option 1: Docker (Recommended)
+```bash
+# 1. Set up environment variables
+cp .env.example .env
+nano .env  # Add your API keys
+
+# 2. Run with Docker
+./run-docker.sh
+
+# 3. Access the application
+# Frontend: http://localhost
+# Backend: http://localhost:3000
+```
+
+### Option 2: Kubernetes
+```bash
+# 1. Deploy to Kubernetes cluster
+cd kubernetes
+./deploy.sh
+
+# 2. Port forward for local access
+kubectl port-forward service/consensusai-client-service 8080:80 -n consensusai
+
+# 3. Access at http://localhost:8080
+```
+
+### Option 3: Manual Development Setup
 
 Run the `start-app.bat` file to start both the backend and frontend servers.
 

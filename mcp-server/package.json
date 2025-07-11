@@ -28,8 +28,7 @@
     "ai",
     "consensus",
     "discussion",
-    "multi-model",
-    "huggingface"
+    "multi-model"
   ],
   "author": "Your Name",
   "license": "MIT",

@@ -1,0 +1,41 @@
+# Multi-stage build for production
+FROM node:18-alpine AS builder
+
+WORKDIR /app
+
+# Copy package files
+COPY mcp-server/package*.json ./
+
+# Install dependencies
+RUN npm ci --only=production && npm cache clean --force
+
+# Copy source code
+COPY mcp-server/src ./src
+
+# Production stage
+FROM node:18-alpine AS production
+
+# Create non-root user
+RUN addgroup -g 1001 -S nodejs && \
+    adduser -S consensusai -u 1001
+
+WORKDIR /app
+
+# Copy built application
+COPY --from=builder --chown=consensusai:nodejs /app .
+
+# Add health check endpoint
+RUN echo 'const express = require("express"); const app = express(); app.get("/health", (req, res) => res.status(200).json({status: "healthy"})); module.exports = app;' > health.js
+
+# Switch to non-root user
+USER consensusai
+
+# Expose port
+EXPOSE 3000
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 \
+  CMD wget --no-verbose --tries=1 --spider http://localhost:3000/health || exit 1
+
+# Start application
+CMD ["node", "src/app-enhanced.js"]

@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: client-config
+  namespace: consensusai
+data:
+  VITE_API_URL: "http://consensusai-server-service:3000"
+  # Note: In production, this should be the actual external URL
+  # VITE_API_URL: "https://api.consensusai.com"
